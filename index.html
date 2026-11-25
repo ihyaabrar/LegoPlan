@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="id" class="mode-dashboard">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AERO-BRICK STUDIO: LEGO Pesawat Tempur F-77 Lancer 3D</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body class="mode-dashboard">
+    <a href="#main-stage" class="skip-link">Loncat ke konten utama</a>
+    <div id="app">
+      <!-- Top Shell: Identity, 4-Mode Navigation, and Utilities -->
+      <header class="top-shell">
+        <div class="brand-card">
+          <button type="button" id="brand-home-btn" class="brand-banner" aria-label="Kembali ke Dashboard AERO-BRICK STUDIO">
+            <div class="brand-title">
+              <span class="brand-tag">AERO-BRICK STUDIO</span>
+              <span class="brand-name">F-77 <span class="brand-accent">LANCER</span></span>
+            </div>
+            <div class="brand-stripes" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+          </button>
+          <dl class="brand-specs">
+            <div class="spec-item"><dt>Part</dt><dd>912 pcs</dd></div>
+            <div class="spec-item"><dt>Tingkat</dt><dd>5 / 5</dd></div>
+            <div class="spec-item"><dt>Waktu</dt><dd>4-6 jam</dd></div>
+            <div class="spec-item"><dt>Usia</dt><dd>12+</dd></div>
+          </dl>
+        </div>
+
+        <nav class="mode-switcher" aria-label="Mode aplikasi">
+          <button type="button" id="mode-dashboard" class="mode-tab active" aria-current="page">
+            Dashboard
+          </button>
+          <button type="button" id="mode-studio" class="mode-tab">
+            Studio 3D
+          </button>
+          <button type="button" id="mode-game" class="mode-tab">
+            Game Rakit
+          </button>
+          <button type="button" id="mode-flight" class="mode-tab">
+            Simulasi Terbang
+          </button>
+        </nav>
+
+        <div class="top-actions">
+          <div class="env-pills studio-game-only" role="group" aria-label="Tema lingkungan">
+            <button type="button" class="env-btn active" data-env="studio" aria-pressed="true">Studio</button>
+            <button type="button" class="env-btn" data-env="hangar" aria-pressed="false">Hangar</button>
+            <button type="button" class="env-btn" data-env="sky" aria-pressed="false">Langit</button>
+          </div>
+          <button type="button" id="btn-reference" class="icon-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
+            </svg>
+            <span>Referensi</span>
+          </button>
+          <button
+            type="button"
+            id="btn-toggle-panel"
+            class="icon-btn studio-only"
+            aria-label="Sembunyikan atau tampilkan panel kontrol"
+            aria-expanded="true"
+            aria-controls="control-panel"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <span class="btn-label-sm">Kontrol</span>
+          </button>
+        </div>
+      </header>
+
+      <main id="main-stage" tabindex="-1">
+        <!-- 1. Pure 2D Dashboard: Frameless Full-Bleed 3D Render Backdrop + Scrollable Overview -->
+        <section id="dashboard-view" class="dashboard-view" aria-labelledby="dash-title">
+          <div class="dash-hero">
+            <img
+              id="dash-hero-img"
+              class="dash-hero-bg"
+              width="1920"
+              height="1000"
+              fetchpriority="high"
+              alt="Hasil render 3D LEGO Pesawat Tempur F-77 Lancer dari AERO-BRICK STUDIO sebagai latar belakang"
+            />
+            <div class="dash-hero-scrim" aria-hidden="true"></div>
+
+            <div class="dash-hero-inner">
+              <div class="dash-hero-copy">
+                <div class="dash-header-bar">
+                  <div class="dash-id-stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <span class="dash-model-code">SET F-77 LANCER / 912 PCS</span>
+                </div>
+
+                <h1 id="dash-title" class="dash-headline">
+                  AERO-BRICK <span class="hl">STUDIO</span>
+                </h1>
+                <p class="dash-subtitle">
+                  Aplikasi web interaktif untuk LEGO Pesawat Tempur F-77 Lancer. Putar model 3D 360 derajat,
+                  rakit satu per satu dari <span id="dash-hero-bricks">360</span> bata standar, lalu uji Take-Off, Landing, dan 6 rudal di simulasi terbang.
+                </p>
+
+                <dl class="dash-specs-grid">
+                  <div class="d-spec"><dt>Model</dt><dd>F-77 Lancer</dd></div>
+                  <div class="d-spec"><dt>Jumlah Part</dt><dd>912 pcs (<span id="dash-spec-bricks">360</span> bata 3D)</dd></div>
+                  <div class="d-spec"><dt>Tingkat &amp; Usia</dt><dd>5 / 5 (12+)</dd></div>
+                  <div class="d-spec"><dt>Estimasi Rakit</dt><dd>4-6 jam</dd></div>
+                </dl>
+
+                <div class="dash-cta-row">
+                  <button type="button" id="cta-flight" class="dash-btn primary">
+                    Mulai Simulasi Terbang
+                  </button>
+                  <button type="button" id="cta-game" class="dash-btn secondary">
+                    Rakit Per-Bata
+                  </button>
+                  <button type="button" id="cta-studio" class="dash-btn outline">
+                    Buka Studio 3D
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-container">
+            <!-- Section 2: Mode Utama (Asymmetric hierarchy with real app screenshots) -->
+            <section class="dash-section" aria-labelledby="modes-heading">
+              <div class="dash-section-head">
+                <h2 id="modes-heading">Tiga Mode Interaktif</h2>
+                <p>Semua tampilan di bawah diambil langsung dari aplikasi AERO-BRICK STUDIO.</p>
+              </div>
+
+              <div class="dash-modes-layout">
+                <article class="dash-mode-flagship">
+                  <div class="dm-meta">
+                    <span class="dm-kicker">SIMULASI 3D</span>
+                    <h3>Simulasi Penerbangan dan Tempur</h3>
+                    <p>
+                      Lepas landas dari landasan pacu pangkalan udara LEGO, kendalikan kecepatan dan ketinggian,
+                      kunci 6 drone target di udara dengan 6 rudal homing, lewati 4 cincin emas, lalu lakukan
+                      pendaratan manual atau Auto-Landing.
+                    </p>
+                    <div class="dm-preview">
+                      <img
+                        id="dash-prev-flight"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        alt="Tangkapan layar mode Simulasi Penerbangan F-77 Lancer di landasan pacu dengan nozzle emas, target drone, dan instrumen kokpit"
+                      />
+                    </div>
+                    <ul class="dm-points">
+                      <li>Take-Off dan Landing otomatis 1 klik atau kendali keyboard penuh (W/S, Panah, A/D).</li>
+                      <li>3 sudut kamera: Chase Cam, Kokpit, dan Orbit 360 derajat.</li>
+                      <li>Rudal dapat diisi ulang dan roda pendaratan dapat dilipat saat mengudara.</li>
+                    </ul>
+                  </div>
+                  <div class="dm-action">
+                    <button type="button" class="dash-btn primary" data-goto="flight">
+                      Buka Simulasi Terbang
+                    </button>
+                  </div>
+                </article>
+
+                <div class="dash-modes-pair">
+                  <article class="dash-mode-card">
+                    <div class="dm-card-thumb">
+                      <img
+                        id="dash-prev-game"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        alt="Tangkapan layar Game Rakit Bata Standar dengan hologram biru 3D dan Daftar Part tahap perakitan"
+                      />
+                    </div>
+                    <span class="dm-kicker-dark">PERMAINAN RAKIT</span>
+                    <h3>Game Rakit Bata Standar</h3>
+                    <p>
+                      Susun <span id="dash-game-bricks">360</span> bata standar (1x2 hingga 2x6, slope, grille, wedge plate, dan komponen khusus) dalam
+                      19 tahap mengikuti Daftar Part dengan hologram target 3D, skor, kombo, dan suara klik bata.
+                    </p>
+                    <button type="button" class="dash-btn secondary" data-goto="game">
+                      Main Game Rakit
+                    </button>
+                  </article>
+
+                  <article class="dash-mode-card">
+                    <div class="dm-card-thumb">
+                      <img
+                        id="dash-prev-studio"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        alt="Tangkapan layar Studio 3D F-77 Lancer dengan kanopi terbuka, afterburner menyala, dan panel kontrol 360 derajat"
+                      />
+                    </div>
+                    <span class="dm-kicker-dark">INSPEKTOR 360°</span>
+                    <h3>Studio 3D F-77 Lancer</h3>
+                    <p>
+                      Putar model bebas 360 derajat, buka kanopi kokpit trans-brown, nyalakan afterburner mesin ganda,
+                      lipat roda, geser Mode Bongkar (Explode), dan putar simulasi 20 langkah perakitan.
+                    </p>
+                    <button type="button" class="dash-btn outline" data-goto="studio">
+                      Buka Studio 3D
+                    </button>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 3: 5 Fitur Model (Direct deep-links into Studio 3D camera spotlights) -->
+            <section class="dash-section" aria-labelledby="specs-heading">
+              <div class="dash-section-head">
+                <h2 id="specs-heading">Lima Detail Utama F-77 Lancer</h2>
+                <p>Klik salah satu bagian untuk langsung melihat sorotan detailnya di Studio 3D.</p>
+              </div>
+
+              <div class="dash-parts-strip">
+                <button type="button" class="part-spot-btn" data-studio-cam="cockpit">
+                  <strong>Kokpit Detil</strong>
+                  <span>Kanopi trans-brown buka-tutup, kursi tandem, joystick, HUD hijau, dan layar MFD.</span>
+                </button>
+                <button type="button" class="part-spot-btn" data-studio-cam="engines">
+                  <strong>Mesin Ganda</strong>
+                  <span>Dua nozzle jet bergerigi dengan cincin logam emas dan efek api afterburner.</span>
+                </button>
+                <button type="button" class="part-spot-btn" data-studio-cam="weapons">
+                  <strong>Persenjataan Lengkap</strong>
+                  <span>6 rudal udara-ke-udara putih-merah pada pylon bawah sayap kiri dan kanan.</span>
+                </button>
+                <button type="button" class="part-spot-btn" data-studio-cam="gear">
+                  <strong>Roda Pendaratan</strong>
+                  <span>Roda karet berprofil dengan velg perak 5-palang yang dapat dilipat.</span>
+                </button>
+                <button type="button" class="part-spot-btn" data-studio-cam="tail">
+                  <strong>Ekor Ganda</strong>
+                  <span>Vertical stabilizer miring keluar dengan strip merah atas dan emblem sayap putih.</span>
+                </button>
+              </div>
+            </section>
+
+            <footer class="dash-footer">
+              <span>AERO-BRICK STUDIO: Replika 3D LEGO Pesawat Tempur F-77 Lancer (Three.js + Vite).</span>
+              <button type="button" id="btn-footer-ref" class="text-action-btn">Lihat Poster Asli</button>
+            </footer>
+          </div>
+        </section>
+
+        <!-- 3D WebGL Viewport (Active in Studio 3D, Game Rakit, and Simulasi Terbang) -->
+        <div id="viewport" class="hidden" aria-label="Kanvas 3D LEGO Pesawat Tempur F-77 Lancer">
+          <div id="viewport-status" class="viewport-status" role="status" aria-live="polite">
+            Memuat model 3D F-77 Lancer...
+          </div>
+        </div>
+
+        <!-- 2. Studio 3D Control Panel & Feature Shortcuts -->
+        <aside id="control-panel" class="control-panel studio-only" aria-label="Kontrol Studio 3D">
+          <section class="panel-section">
+            <h2 class="section-title">Kontrol Pesawat</h2>
+            <div class="toggle-grid">
+              <button type="button" id="btn-canopy" class="ctrl-btn" aria-pressed="false">
+                <span class="state-mark" aria-hidden="true"></span>
+                <span>Kanopi Kokpit</span>
+              </button>
+              <button type="button" id="btn-afterburner" class="ctrl-btn" aria-pressed="false">
+                <span class="state-mark" aria-hidden="true"></span>
+                <span>Afterburner</span>
+              </button>
+              <button type="button" id="btn-gear" class="ctrl-btn active" aria-pressed="true">
+                <span class="state-mark" aria-hidden="true"></span>
+                <span>Roda Pendaratan</span>
+              </button>
+              <button type="button" id="btn-flight" class="ctrl-btn" aria-pressed="false">
+                <span class="state-mark" aria-hidden="true"></span>
+                <span>Mode Terbang</span>
+              </button>
+              <button type="button" id="btn-missiles" class="ctrl-btn accent-btn" aria-pressed="false">
+                <span class="state-mark" aria-hidden="true"></span>
+                <span>Tembak Rudal</span>
+              </button>
+              <button type="button" id="btn-autorotate" class="ctrl-btn" aria-pressed="false">
+                <span class="state-mark" aria-hidden="true"></span>
+                <span>Putar 360°</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <div class="slider-header">
+              <label for="slider-explode" class="section-title">Mode Bongkar (Explode)</label>
+              <span id="explode-val" class="pill-val">0%</span>
+            </div>
+            <input id="slider-explode" type="range" min="0" max="100" value="0" />
+          </section>
+
+          <section class="panel-section">
+            <div class="slider-header">
+              <label for="slider-step" class="section-title">Langkah Pembuatan</label>
+              <span id="step-val" class="pill-val">20 / 20</span>
+            </div>
+            <input id="slider-step" type="range" min="1" max="20" value="20" />
+            <div id="step-caption" class="step-caption">20. Model F-77 Lancer selesai!</div>
+            <div class="step-btns">
+              <button type="button" id="btn-step-prev" class="mini-btn">Sebelumnya</button>
+              <button type="button" id="btn-step-play" class="mini-btn primary">Simulasi Rakit</button>
+              <button type="button" id="btn-step-next" class="mini-btn">Berikutnya</button>
+            </div>
+          </section>
+
+          <section class="panel-section">
+            <h2 class="section-title">Sudut Kamera</h2>
+            <div class="cam-grid">
+              <button type="button" class="cam-btn active" data-cam="hero">Utama</button>
+              <button type="button" class="cam-btn" data-cam="top">Atas</button>
+              <button type="button" class="cam-btn" data-cam="side">Samping</button>
+              <button type="button" class="cam-btn" data-cam="front">Depan</button>
+              <button type="button" class="cam-btn" data-cam="rear">Belakang</button>
+              <button type="button" class="cam-btn" data-cam="under">Bawah</button>
+            </div>
+          </section>
+
+          <section class="panel-section panel-env-section">
+            <h2 class="section-title">Tema Lingkungan</h2>
+            <div class="cam-grid" role="group" aria-label="Tema lingkungan studio">
+              <button type="button" class="env-btn active" data-env="studio" aria-pressed="true">Studio</button>
+              <button type="button" class="env-btn" data-env="hangar" aria-pressed="false">Hangar</button>
+              <button type="button" class="env-btn" data-env="sky" aria-pressed="false">Langit</button>
+            </div>
+          </section>
+        </aside>
+
+        <nav class="features-dock studio-only" aria-label="Sorotan fitur model">
+          <button type="button" class="feat-chip" data-cam="cockpit">
+            <strong>Kokpit Detil</strong>
+            <span>Interior dan kanopi</span>
+          </button>
+          <button type="button" class="feat-chip" data-cam="engines">
+            <strong>Mesin Ganda</strong>
+            <span>Nozzle emas dan api</span>
+          </button>
+          <button type="button" class="feat-chip" data-cam="weapons">
+            <strong>Persenjataan</strong>
+            <span>6 rudal udara</span>
+          </button>
+          <button type="button" class="feat-chip" data-cam="gear">
+            <strong>Roda Pendaratan</strong>
+            <span>Bisa dilipat</span>
+          </button>
+          <button type="button" class="feat-chip" data-cam="tail">
+            <strong>Ekor Ganda</strong>
+            <span>Emblem dan kemudi</span>
+          </button>
+        </nav>
+
+        <!-- 3. Assembly Game HUD -->
+        <section id="game-hud" class="game-hud hidden" aria-label="Panel Game Rakit">
+          <div class="game-mission-bar">
+            <div class="mission-main">
+              <div class="mission-step-badge" id="g-step-badge">TAHAP 1 / 19</div>
+              <div class="mission-text">
+                <strong id="g-stage-name">Rangka Dasar</strong>
+                <span id="g-stage-desc">Susun plate dan tile sasis utama bagian bawah</span>
+              </div>
+            </div>
+
+            <div class="mission-progress-wrap">
+              <div class="mission-progress-labels">
+                <span id="g-pcs-label">Bata 0 / 368</span>
+                <span id="g-pct-label">0%</span>
+              </div>
+              <div class="mission-progress-track">
+                <div id="g-progress-fill" class="mission-progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="mission-stats">
+              <div class="stat-pill">
+                <small>SKOR</small>
+                <strong id="g-score">0</strong>
+              </div>
+              <div class="stat-pill combo-pill hidden" id="g-combo-pill">
+                <small>COMBO</small>
+                <strong id="g-combo">x2</strong>
+              </div>
+              <div class="stat-pill">
+                <small>WAKTU</small>
+                <strong id="g-timer">00:00</strong>
+              </div>
+            </div>
+
+            <div class="mission-tools">
+              <div class="granularity-pills" role="group" aria-label="Navigasi tahap rakit">
+                <button type="button" id="btn-g-prevstep" class="gran-btn">Tahap Prev</button>
+                <button type="button" id="btn-g-nextstep" class="gran-btn">Tahap Next</button>
+              </div>
+              <button type="button" id="btn-g-autostage" class="g-tool-btn auto">Auto Tahap</button>
+              <button type="button" id="btn-g-hint" class="g-tool-btn hint">Bantuan</button>
+              <button type="button" id="btn-g-mute" class="g-tool-btn" aria-label="Matikan atau nyalakan suara" aria-pressed="false">Suara: On</button>
+              <button type="button" id="btn-g-restart" class="g-tool-btn">Ulang</button>
+            </div>
+          </div>
+
+          <div class="parts-tray-wrap">
+            <div id="g-toast" class="g-toast hidden" role="status" aria-live="polite"></div>
+            <div class="tray-instruction" id="g-instruction">
+              Pilih jenis bata LEGO dari Daftar Part Tahap Ini, lalu klik hologram biru pada pesawat 3D.
+            </div>
+            <div id="g-parts-tray" class="parts-tray" role="list" aria-label="Daftar part tahap ini"></div>
+          </div>
+        </section>
+
+        <!-- 4. Flight Simulator HUD -->
+        <section id="flight-hud" class="flight-hud hidden" aria-label="Instrumen Simulasi Penerbangan">
+          <div class="hud-reticle" id="f-reticle" aria-hidden="true">
+            <div class="reticle-ring"></div>
+            <div class="reticle-cross"></div>
+            <div id="f-lock-badge" class="lock-badge hidden">LOCK ON: DRONE #1</div>
+          </div>
+
+          <div class="avionics-card left">
+            <div class="av-phase-badge" id="f-phase">DI LANDASAN (SIAP)</div>
+            <div class="av-gauges">
+              <div class="av-gauge">
+                <small>KECEPATAN</small>
+                <strong><span id="f-speed">0</span> <em>KT</em></strong>
+                <span class="av-sub" id="f-mach">MACH 0.00</span>
+              </div>
+              <div class="av-gauge">
+                <small>KETINGGIAN</small>
+                <strong><span id="f-alt">0</span> <em>FT</em></strong>
+                <span class="av-sub" id="f-gear-status">GEAR DOWN</span>
+              </div>
+            </div>
+            <div class="av-throttle-box">
+              <div class="av-throttle-head">
+                <label for="f-throttle-slider">THROTTLE (W / S)</label>
+                <strong id="f-throttle-val">0%</strong>
+              </div>
+              <input id="f-throttle-slider" type="range" min="0" max="100" value="0" />
+            </div>
+          </div>
+
+          <div class="avionics-card right">
+            <div class="av-row"><span>Rudal tersisa</span><strong id="f-missiles">6 / 6</strong></div>
+            <div class="av-row"><span>Drone hancur</span><strong id="f-kills">0 / 6</strong></div>
+            <div class="av-row"><span>Cincin terbang</span><strong id="f-rings">0 / 4</strong></div>
+            <div class="av-controls-help">
+              <div><kbd>W</kbd>/<kbd>S</kbd> Gas, <kbd>Up</kbd>/<kbd>Down</kbd> Tukik/Naik</div>
+              <div><kbd>A</kbd>/<kbd>D</kbd> Belok, <kbd>Spasi</kbd> Tembak rudal</div>
+              <div><kbd>B</kbd> Afterburner, <kbd>G</kbd> Roda, <kbd>C</kbd> Kamera</div>
+            </div>
+          </div>
+
+          <div id="f-toast" class="f-toast hidden" role="status" aria-live="polite"></div>
+
+          <div class="flight-action-dock" role="toolbar" aria-label="Aksi penerbangan">
+            <button type="button" id="btn-f-takeoff" class="f-btn takeoff">Take-Off</button>
+            <button type="button" id="btn-f-landing" class="f-btn landing">Landing</button>
+            <button type="button" id="btn-f-fire" class="f-btn fire">Tembak Rudal (<span id="f-btn-ammo">6</span>)</button>
+            <button type="button" id="btn-f-reload" class="f-btn">Isi Rudal</button>
+            <button type="button" id="btn-f-ab" class="f-btn" aria-pressed="false">Afterburner</button>
+            <button type="button" id="btn-f-gear" class="f-btn active" aria-pressed="true">Roda</button>
+            <button type="button" id="btn-f-cam" class="f-btn">Kamera</button>
+            <button type="button" id="btn-f-reset" class="f-btn">Reset Landasan</button>
+          </div>
+        </section>
+      </main>
+
+      <!-- Drag Ghost Pill (Game Mode) -->
+      <div id="drag-ghost" class="drag-ghost hidden" aria-hidden="true">
+        <div id="drag-ghost-svg" class="drag-ghost-svg"></div>
+        <div class="drag-ghost-meta">
+          <strong id="drag-ghost-name">Komponen</strong>
+          <span id="drag-ghost-status">Arahkan ke hologram 3D...</span>
+        </div>
+      </div>
+
+      <!-- Victory Modal (Game Mode) -->
+      <div id="victory-modal" class="ref-modal hidden" role="dialog" aria-modal="true" aria-labelledby="victory-title">
+        <div class="victory-card">
+          <div class="victory-badge">PERAKITAN SELESAI</div>
+          <div id="v-stars" class="victory-stars" aria-label="Peringkat bintang">★★★</div>
+          <h2 id="victory-title">F-77 Lancer siap terbang</h2>
+          <p class="victory-sub">Seluruh <span id="v-total-bricks">360</span> bata standar (set 912 pcs) berhasil dirakit.</p>
+          <dl class="victory-stats">
+            <div class="v-stat"><dt>Total skor</dt><dd id="v-score">0</dd></div>
+            <div class="v-stat"><dt>Waktu</dt><dd id="v-time">00:00</dd></div>
+            <div class="v-stat"><dt>Akurasi</dt><dd id="v-acc">100%</dd></div>
+            <div class="v-stat"><dt>Max combo</dt><dd id="v-combo">x1</dd></div>
+          </dl>
+          <div class="victory-actions">
+            <button type="button" id="btn-v-replay" class="v-btn secondary">Rakit lagi</button>
+            <button type="button" id="btn-v-flight" class="v-btn primary">Mulai Simulasi Terbang</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Hint (Studio & Game Modes) -->
+      <div class="hint-bar" id="hint-bar">
+        <span>Drag kiri: Putar 360°</span>
+        <span>/</span>
+        <span>Scroll: Zoom</span>
+        <span>/</span>
+        <span>Drag kanan: Geser</span>
+      </div>
+
+      <!-- Reference Poster Modal -->
+      <div id="ref-modal" class="ref-modal hidden" role="dialog" aria-modal="true" aria-labelledby="ref-modal-title">
+        <div class="ref-modal-card">
+          <div class="ref-modal-header">
+            <strong id="ref-modal-title">Referensi Asli: LEGO Pesawat Tempur F-77 Lancer</strong>
+            <button type="button" id="btn-close-ref" class="close-btn" aria-label="Tutup dialog referensi">&times;</button>
+          </div>
+          <div class="ref-modal-body">
+            <img id="ref-img" width="1600" height="1131" alt="Poster panduan LEGO Pesawat Tempur F-77 Lancer 912 pcs" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

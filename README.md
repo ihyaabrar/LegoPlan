@@ -1,5 +1,7 @@
 # AERO-BRICK STUDIO: LEGO F-77 Lancer 3D
 
+**Live Demo:** [https://legoplan.vercel.app](https://legoplan.vercel.app)
+
 An interactive WebGL web application built with **Three.js** and **Vite** that models the **LEGO F-77 Lancer Fighter Jet (912-piece reference set)** out of **360 individual standard 3D LEGO bricks**. Explore the aircraft from every angle in a 360-degree studio, assemble it brick by brick across 19 guided stages, or take off from a 3D LEGO airbase and fire homing missiles in the flight simulator.
 
 ![AERO-BRICK STUDIO F-77 Lancer 3D Render](src/assets/hero-f77-render.png)
